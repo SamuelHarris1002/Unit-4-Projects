@@ -33,10 +33,11 @@
       on the items in the list array
 
 */
-
+//global variables
 var allCells;
 var found = false;
 
+//loads the function once the window loads
 window.onload = init;
 
 
@@ -65,7 +66,7 @@ function init() {
          }
       }
 
-      //alert box
+      //alert box that says "You solved the puzzle"
       if (solved) {
          alert("You solved the puzzle!");
       }

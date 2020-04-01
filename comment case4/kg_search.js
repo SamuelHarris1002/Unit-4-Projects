@@ -89,6 +89,7 @@ function startRecording(e) {
    if (e.target.style.backgroundColor !== "rgb(28, 255, 132)") {
       e.target.style.backgroundColor = "rgb(255, 197, 153)";
    }
+   
    for (var i = 0; i < allCells.length; i++) {
       allCells[i].addEventListener("mouseenter", continueRecording);
    }

@@ -129,7 +129,6 @@ function selectLetter(e){
    var upLetter = currentLetter.dataset.up;
    var downLetter = currentLetter.dataset.down;
    var rightLetter = currentLetter.dataset.right;
-
    var userKey = "e.keycode";
 
 
@@ -148,6 +147,8 @@ function selectLetter(e){
    }else if(userKey >= 65 && userKey <=  90){
       currentLetter = getChar(userKey)
    }
+
+
    // changes the keyboard
    e.preventDefault()
 

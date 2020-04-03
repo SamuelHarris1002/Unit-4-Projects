@@ -72,6 +72,16 @@ function init() {
    var downID = currentLetter.dataset.clueD;
    acrossClue = document.getElementById(currentLetter.dataset.clueA);
    downClue = document.getElementById(currentLetter.dataset.clueD);
+
+   //step 8
+   function formatPuzzle(currentLetter){
+      for(var i = 0; i < allLetters.length; i++){
+         allLetters[i].style.cursor = "pointer";
+         allLetters[i].addEventListener("onmousedown",function puzzle(){
+            formatPuzzle(event)
+         })
+      }
+   }
 }
 //step7
 function formatPuzzle(puzzleLetter) {
@@ -92,7 +102,7 @@ function formatPuzzle(puzzleLetter) {
    if(currentLetter.dataset.clueA !== undefined){
       acrossClue.getElementById(currentLetter.dataset.clueA);
       acrossClue.style.color = "blue";
-      wordLetters.style.querySelectorAll("data-" + currentLetter + "-a = clue");
+      wordLetters.style.querySelectorAll("[data-clue-a = " + currentLetter.dataset.clueA + "]");
       wordLetters.style.backgroundColor = "rgb(231,231,255)";
    }
 
@@ -100,8 +110,8 @@ function formatPuzzle(puzzleLetter) {
    //the current letter equaling the clue
    if(currentLetter.dataset.clueD !== undefined){
       acrossClue.getElementById(currentLetter.dataset.clueD)
-      acrossClue.style.color = "blue";
-      wordLetters.style.querySelectorAll("data-" + currentLetter + "-d = clue");
+      acrossClue.style.color = "red";
+      wordLetters.style.querySelectorAll("[data-clue-d = " + currentLetter.dataset.clueD + "]");
       wordLetters.style.backgroundColor = "rgb(231,231,255)";
    }
 
@@ -112,8 +122,36 @@ function formatPuzzle(puzzleLetter) {
       currentLetter.style.backgroundColor = "rgb(255,191,191)";
    }
 }
+//function for the puzzle
+//step 9
+function selectLetter(e){
+   var leftLetter = currentLetter.dataset.left;
+   var upLetter = currentLetter.dataset.up;
+   var downLetter = currentLetter.dataset.down;
+   var rightLetter = currentLetter.dataset.right;
+
+   var userKey = "e.keycode";
 
 
+   if(userKey === 37){
+         formatPuzzle(leftLetter)
+   }else if(userKey === 38){
+      formatPuzzle(upLetter)
+   } else if (userKey === 39 || userKey === 9){
+      formatPuzzle(rightLetter)
+   }else if(userKey === 40 || userKey === 13){
+      formatPuzzle(downLetter)
+   }else if(userKey === 8 || userKey === 46){
+      currentLetter = "";
+   }else if (userKey === 32){
+      switchTypeDirection()
+   }else if(userKey >= 65 && userKey <=  90){
+      currentLetter = getChar(userKey)
+   }
+   // changes the keyboard
+   e.preventDefault()
+
+}
    
 
 

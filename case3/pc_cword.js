@@ -82,6 +82,17 @@ function init() {
          })
       }
    }
+   //step 10
+   //runs the function selectLetter when the object keydown is used
+   document.onkeydown = selectLetter;
+
+   //step 12
+   var typeImage = document.getElementById("directionImg");
+   //changes mouse to pointer
+   typeImage.style.cursor = "pointer";
+   //runs function switchTypeDirection when clicked on 
+   typeImage.addEventListener("onclick", function switchTypeDirection)
+
 }
 //step7
 function formatPuzzle(puzzleLetter) {
@@ -153,8 +164,21 @@ function selectLetter(e){
    e.preventDefault()
 
 }
-   
-
+//step 11   
+function switchTypeDirection(){
+   var typeImage = document.getElementById("directionImg");
+   //when typeDirection does right, it goes down and the color changes
+   if(typeDirection === "right"){
+      typeDirection = "down"
+      currentLetter.style.backgroundColor = "rgb(255, 191, 191)"
+   }else//if its not equal to right, change it to equal right,change the 
+   //typeImage to pc_down.png and change the color
+   {
+      typeDirection = "right"
+      typeImage.src = "pc_down.png";
+      currentLetter.style.backgroundColor = "rgb(191, 191, 255)"
+   }
+}
 
 
 

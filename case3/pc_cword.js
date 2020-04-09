@@ -77,9 +77,9 @@ function init() {
    function formatPuzzle(currentLetter){
       for(var i = 0; i < allLetters.length; i++){
          allLetters[i].style.cursor = "pointer";
-         allLetters[i].addEventListener("onmousedown",function puzzle(){
-            formatPuzzle(event)
-         })
+         allLetters[i].onmousedown = function(e) {
+            formatPuzzle(e.target);
+         }
       }
    }
    //step 10
@@ -91,8 +91,33 @@ function init() {
    //changes mouse to pointer
    typeImage.style.cursor = "pointer";
    //runs function switchTypeDirection when clicked on 
-   typeImage.addEventListener("onclick", function switchTypeDirection)
+   typeImage.onclick = switchTypeDirection;
 
+   //13.a
+   //if the text cotent doesnt match the dataset.property then the color turns red
+   for(var i = 0; i < allLetters.length;i++){
+      if(allLetters[i] !== currentLetter.dataset.letter){
+         allLetters[i].style.backgroundColor = "red";
+      }
+   }
+//step 13.b
+   setTimeout(function() {
+      for (var i = 0; i < allLetters.length; i++) {
+         allLetters[i].style.color = "";
+      }
+   }, 3000);
+
+   //step 14
+   //sets the color to normal after 3 secs
+   document.getElementById("showSolution").onclick
+
+   //adds onclick to the button
+   document.getElementById("showErrors").onclick = function() {
+      //anonymous function that sets the text content to the value of the dataset.letter property
+      for(var i =0; i < allLetters.length; i++){
+         allLetters[i].textContent = currentLetter.dataset.letter
+      }
+   }
 }
 //step7
 function formatPuzzle(puzzleLetter) {
@@ -170,12 +195,13 @@ function switchTypeDirection(){
    //when typeDirection does right, it goes down and the color changes
    if(typeDirection === "right"){
       typeDirection = "down"
+      typeImage.src = "pc_down.png";
       currentLetter.style.backgroundColor = "rgb(255, 191, 191)"
    }else//if its not equal to right, change it to equal right,change the 
    //typeImage to pc_down.png and change the color
    {
       typeDirection = "right"
-      typeImage.src = "pc_down.png";
+      typeImage.src = "pc_right.png";
       currentLetter.style.backgroundColor = "rgb(191, 191, 255)"
    }
 }
